@@ -43,9 +43,6 @@ document.querySelectorAll(".nav-links a[data-page]").forEach((link) => {
   }
 });
 
-// Footer year
-const yearEl = document.querySelector("[data-year]");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Count-up animation for hero impact stats (e.g. "2,000+ individuals")
 const statEls = document.querySelectorAll(".hero-stat-num");
