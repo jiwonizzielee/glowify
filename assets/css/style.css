@@ -641,6 +641,17 @@ section { padding: clamp(4rem, 8vw, 6.5rem) 0; }
   position: relative; z-index: 1;
   font-weight: 700; font-size: 0.95rem;
 }
+.gallery-tile-link-badge {
+  position: absolute;
+  top: 0.7rem; right: 0.7rem;
+  z-index: 1;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(254,254,254,0.92);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+.gallery-tile-link-badge svg { width: 13px; height: 13px; stroke: var(--accent-deep); }
 .gallery-tile.g1 { background: linear-gradient(135deg,#E39AAE,#C97690); }
 .gallery-tile.g2 { background: linear-gradient(135deg,#F3D9B1,#E8B98A); }
 .gallery-tile.g3 { background: linear-gradient(135deg,#B7CFC1,#8FB3A0); }
