@@ -45,7 +45,7 @@ document.querySelectorAll(".nav-links a[data-page]").forEach((link) => {
 
 
 // Count-up animation for hero impact stats (e.g. "2,000+ individuals")
-const statEls = document.querySelectorAll(".hero-stat-num");
+const statEls = document.querySelectorAll(".hero-stat-num .figure");
 if (statEls.length) {
   const animateStat = (el) => {
     const text = el.textContent;
