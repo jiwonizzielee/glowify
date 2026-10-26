@@ -262,25 +262,31 @@ h3 { font-size: 1.25rem; }
   margin-top: 2.25rem;
 }
 
-.hero-visual {
+/* the two outreach photos, blurred, as the backdrop; they fade into the page below */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(0.75rem, 2vw, 1.25rem);
-  max-width: 960px;
-  margin: clamp(3.5rem, 7vw, 5.5rem) auto 0;
-  padding: clamp(0.75rem, 2vw, 1.25rem);
-  border: 3px solid transparent;
-  border-radius: clamp(36px, 7vw, 90px);
-  background:
-    linear-gradient(var(--canvas), var(--canvas)) padding-box,
-    linear-gradient(135deg, #f6cfd3 0%, #d98592 100%) border-box;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 45%, transparent 100%);
+  mask-image: linear-gradient(#000 45%, transparent 100%);
 }
-.hero-photo {
+.hero-bg img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--r-image);
-  background: var(--mist);
+  filter: blur(22px) saturate(1.05);
+  transform: scale(1.15);
+}
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(252, 240, 241, 0.62), rgba(252, 240, 241, 0.78)),
+    radial-gradient(ellipse at 50% 30%, rgba(252, 240, 241, 0.7), transparent 70%);
 }
 
 .hero-stats {
@@ -657,7 +663,6 @@ a.gallery-tile:hover .gallery-tile-link-badge { background: var(--pastel-a); }
 @media (max-width: 760px) {
   .grid-3, .grid-2, .grid-4, .gallery-grid, .info-band, .hero-stats { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr 1fr; }
-  .hero-visual { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .cta-band { flex-direction: column; align-items: flex-start; }
