@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap");
 
 /* ==========================================================================
    Glowify
@@ -24,7 +24,7 @@
   --fog: #a08f91;
   --hairline: rgba(42, 23, 25, 0.1);
 
-  --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Instrument Serif", "Playfair Display", Georgia, "Times New Roman", serif;
   --font-body: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --container: 1200px;
@@ -68,11 +68,12 @@ body {
 /* ---- Type: medium weight only ------------------------------------------- */
 h1, h2 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink-deep);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
 }
+h1 em, h2 em { font-style: italic; color: var(--rose-text); }
 h3, h4 {
   font-family: var(--font-body);
   font-weight: 500;
@@ -81,8 +82,8 @@ h3, h4 {
   letter-spacing: -0.015em;
 }
 
-h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); }
-h2 { font-size: clamp(2.1rem, 4.4vw, 3.5rem); }
+h1 { font-size: clamp(3.25rem, 7vw, 5.5rem); }
+h2 { font-size: clamp(2.5rem, 5.4vw, 4.25rem); }
 h3 { font-size: 1.25rem; }
 
 .lede {
@@ -165,9 +166,9 @@ h3 { font-size: 1.25rem; }
   align-items: center;
   gap: 0.55rem;
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  font-size: 1.9rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   line-height: 1;
   color: var(--ink-deep);
 }
@@ -202,15 +203,53 @@ h3 { font-size: 1.25rem; }
 .nav-toggle span { width: 18px; height: 2px; background: var(--ink); border-radius: 2px; }
 
 /* ---- Hero ------------------------------------------------------------------- */
-.hero { padding: clamp(3rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 7rem); }
+.hero { position: relative; overflow: hidden; padding: clamp(3rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 7rem); }
+.hero-inner { position: relative; z-index: 1; }
+
+/* soft glow: blurred pink light behind the hero, plus a few four-point sparkles */
+.glow { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.glow .orb { position: absolute; border-radius: 50%; filter: blur(60px); will-change: transform; }
+.glow .o1 { width: 46vw; max-width: 640px; aspect-ratio: 1; top: -12%; left: 50%; margin-left: -23vw;
+  background: radial-gradient(circle, rgba(240, 201, 204, 0.95), rgba(240, 201, 204, 0) 68%); animation: drift 14s ease-in-out infinite alternate; }
+.glow .o2 { width: 34vw; max-width: 460px; aspect-ratio: 1; top: 30%; left: -8%;
+  background: radial-gradient(circle, rgba(248, 225, 219, 1), rgba(248, 225, 219, 0) 68%); animation: drift 18s ease-in-out infinite alternate-reverse; }
+.glow .o3 { width: 30vw; max-width: 420px; aspect-ratio: 1; top: 52%; right: -6%;
+  background: radial-gradient(circle, rgba(236, 170, 180, 0.55), rgba(236, 170, 180, 0) 68%); animation: drift 16s ease-in-out infinite alternate; }
+
+.glow .spark {
+  position: absolute;
+  width: var(--s, 22px);
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #fff, #f0c9cc 60%, #e3a1aa);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  filter: drop-shadow(0 0 6px rgba(227, 161, 170, 0.8));
+  animation: twinkle 3.6s ease-in-out infinite;
+}
+.glow .s1 { --s: 30px; top: 14%; left: 17%; }
+.glow .s2 { --s: 18px; top: 24%; right: 15%; animation-delay: -1.2s; }
+.glow .s3 { --s: 24px; top: 52%; left: 9%; animation-delay: -2.1s; }
+.glow .s4 { --s: 16px; top: 8%; right: 30%; animation-delay: -0.6s; }
+.glow .s5 { --s: 20px; top: 58%; right: 8%; animation-delay: -2.8s; }
+
+@keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(3vw, 2.5vw) scale(1.12); } }
+@keyframes twinkle { 0%, 100% { opacity: 0.35; transform: scale(0.75) rotate(0); } 50% { opacity: 1; transform: scale(1.1) rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { .glow .orb, .glow .spark { animation: none; } }
+
+/* same glow, quieter, behind the closing call to action */
+.cta-band { position: relative; overflow: hidden; }
+.cta-band::before {
+  content: ""; position: absolute; width: 60%; aspect-ratio: 1; right: -12%; top: -40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 65%); pointer-events: none;
+}
+.cta-band > * { position: relative; }
 .hero-inner { text-align: center; }
 
 .hero h1 {
   max-width: 11ch;
   margin: 1.5rem auto 0;
-  font-size: clamp(3rem, 10.5vw, 9.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  font-size: clamp(3.5rem, 12vw, 10.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
 }
 .hero .lede { margin: 2rem auto 0; max-width: 52ch; }
 
@@ -272,10 +311,10 @@ h3 { font-size: 1.25rem; }
 .hero-stat-num .figure {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
   color: var(--ink-deep);
 }
 .hero-stat-num .unit { display: block; font-size: 1rem; font-weight: 500; color: var(--ink-deep); margin-top: 0.25rem; }
@@ -305,19 +344,6 @@ section { padding: clamp(4rem, 8vw, 7rem) 0; }
 }
 .card:hover { background: var(--paper); }
 
-.card-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--r-small);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--pastel-a);
-  margin-bottom: 1.5rem;
-}
-.card-icon svg { width: 24px; height: 24px; stroke: var(--ink-deep); }
-.grid > .card:nth-child(even) .card-icon { background: var(--pastel-b); }
-
 .card h3 { margin-bottom: 0.65rem; }
 .card p { color: var(--graphite); font-size: 1rem; }
 .card a:not(.btn) {
@@ -331,7 +357,6 @@ section { padding: clamp(4rem, 8vw, 7rem) 0; }
 .card a:not(.btn):hover { text-decoration-color: var(--ink-deep); }
 
 .program-card { display: flex; flex-direction: column; gap: 0.9rem; }
-.program-card .card-icon { margin-bottom: 0.25rem; }
 .program-card h3 { margin-bottom: 0; }
 .program-card p { flex-grow: 1; }
 .program-card .tag {
@@ -557,8 +582,8 @@ a.gallery-tile:hover .gallery-tile-link-badge { background: var(--pastel-a); }
   color: var(--ink-deep);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.4rem;
+  font-weight: 400;
   flex-shrink: 0;
 }
 .timeline-item:nth-child(even) .timeline-dot { background: var(--pastel-b); }
@@ -588,7 +613,7 @@ a.gallery-tile:hover .gallery-tile-link-badge { background: var(--pastel-a); }
   border-radius: var(--r-pill);
   margin-bottom: 1.25rem;
 }
-.donate-panel h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 500; letter-spacing: -0.025em; margin-bottom: 0.75rem; }
+.donate-panel h3 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
 .donate-panel p { color: var(--graphite); margin-bottom: 1.75rem; }
 .donate-use-list {
   display: flex;
