@@ -262,6 +262,27 @@ h3 { font-size: 1.25rem; }
   margin-top: 2.25rem;
 }
 
+.hero-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  max-width: 960px;
+  margin: clamp(3.5rem, 7vw, 5.5rem) auto 0;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border: 3px solid transparent;
+  border-radius: clamp(36px, 7vw, 90px);
+  background:
+    linear-gradient(var(--canvas), var(--canvas)) padding-box,
+    linear-gradient(135deg, #f6cfd3 0%, #d98592 100%) border-box;
+}
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-image);
+  background: var(--mist);
+}
+
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -635,6 +656,7 @@ a.gallery-tile:hover .gallery-tile-link-badge { background: var(--pastel-a); }
 
 @media (max-width: 760px) {
   .grid-3, .grid-2, .grid-4, .gallery-grid, .info-band, .hero-stats { grid-template-columns: 1fr; }
+  .hero-visual { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
