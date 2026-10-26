@@ -1,26 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 /* ==========================================================================
    Glowify
-   White canvas, heavy tightly-tracked display type, flat surfaces with hairline
-   borders, pill controls. One pink accent (from the logo), deep berry for ink.
+   White canvas, bold tightly-tracked display type, flat surfaces with hairline
+   borders, pill controls. Every color shares the logo's dusty rose hue.
    ========================================================================== */
 
 :root {
-  --pink: #f4a7b9;          /* the single accent: primary action, active state */
-  --pink-hover: #ec8ea6;
-  --logo: #f0c9cc;          /* exact logo pink */
-  --wash: #fdeef1;          /* pale pink section/tag background */
-  --fog: #f5ebed;           /* panels, dividers */
+  /* all colors share the logo's hue (~355deg, dusty rose) */
+  --pink: #f0c9cc;          /* exact logo pink: primary action, active state */
+  --pink-hover: #e3abaf;
+  --logo: #f0c9cc;
+  --wash: #fbeeef;          /* pale section/tag background */
+  --fog: #f6eeee;           /* panels, dividers */
 
-  --ink: #3a1424;           /* deep berry: nav text, dark sections, filled pills */
-  --ink-deep: #22090f;      /* display headings */
-  --body: #5a4650;
-  --muted: #84727a;
-  --berry: #6b2a44;
+  --ink: #3e2325;           /* deep rose-brown: nav text, dark sections, filled pills */
+  --ink-deep: #261214;      /* display headings */
+  --body: #5d4c4d;
+  --muted: #8d7c7d;
+  --berry: #7a4a50;
 
   --paper: #ffffff;
-  --hairline: rgba(58, 20, 36, 0.14);
+  --hairline: rgba(62, 35, 37, 0.14);
 
   --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
@@ -62,10 +63,10 @@ body {
 
 /* ---- Type ---------------------------------------------------------------- */
 h1, h2 {
-  font-weight: 900;
+  font-weight: 700;
   color: var(--ink-deep);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.032em;
 }
 h3, h4 { font-weight: 700; color: var(--ink-deep); line-height: 1.25; letter-spacing: -0.015em; }
 
@@ -153,8 +154,8 @@ h3 { font-size: 1.25rem; }
   align-items: center;
   gap: 0.55rem;
   font-size: 1.4rem;
-  font-weight: 900;
-  letter-spacing: -0.045em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 1;
   color: var(--ink-deep);
 }
@@ -194,15 +195,16 @@ h3 { font-size: 1.25rem; }
 .nav-toggle span { width: 18px; height: 2px; background: var(--ink); border-radius: 2px; }
 
 /* ---- Hero ---------------------------------------------------------------- */
-.hero { padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3.5rem, 7vw, 5.5rem); }
+.hero { background: var(--wash); padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3.5rem, 7vw, 5.5rem); }
+.hero .eyebrow { background: var(--paper); }
 .hero-inner { text-align: center; }
 
 .hero h1 {
   max-width: 11ch;
   margin: 1.5rem auto 0;
   font-size: clamp(2.9rem, 9.5vw, 7.4rem);
-  line-height: 0.88;
-  letter-spacing: -0.045em;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
 }
 .hero .lede { margin: 1.75rem auto 0; max-width: 54ch; }
@@ -246,9 +248,9 @@ h3 { font-size: 1.25rem; }
 .hero-stat-num .figure {
   display: block;
   font-size: clamp(2.5rem, 4.8vw, 3.9rem);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
   color: var(--ink-deep);
 }
 .hero-stat-num .unit { display: block; font-size: 1rem; font-weight: 600; color: var(--ink); margin-top: 0.45rem; }
@@ -533,7 +535,7 @@ a.gallery-tile:hover .gallery-tile-link-badge { background: var(--pink); }
   color: var(--ink-deep);
   display: flex; align-items: center; justify-content: center;
   font-size: 1.05rem;
-  font-weight: 900;
+  font-weight: 700;
   flex-shrink: 0;
 }
 .timeline-content h3 { margin: 0.6rem 0 0.4rem; font-size: 1.3rem; }
@@ -563,7 +565,7 @@ a.gallery-tile:hover .gallery-tile-link-badge { background: var(--pink); }
   border-radius: var(--r-pill);
   margin-bottom: 1.25rem;
 }
-.donate-panel h3 { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+.donate-panel h3 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
 .donate-panel p { color: var(--body); margin-bottom: 1.75rem; }
 .donate-use-list {
   display: flex;
@@ -574,7 +576,7 @@ a.gallery-tile:hover .gallery-tile-link-badge { background: var(--pink); }
   border-top: 1px solid var(--hairline);
 }
 .donate-use-item { display: flex; gap: 1rem; align-items: flex-start; }
-.donate-use-item .num { font-weight: 900; color: var(--ink-deep); flex-shrink: 0; letter-spacing: -0.02em; }
+.donate-use-item .num { font-weight: 700; color: var(--ink-deep); flex-shrink: 0; letter-spacing: -0.02em; }
 .donate-use-item p { margin: 0; color: var(--body); font-size: 1rem; }
 .donate-use-item strong { color: var(--ink-deep); }
 
